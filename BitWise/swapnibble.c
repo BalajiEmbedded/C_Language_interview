@@ -14,6 +14,5 @@
  printf("%x\n",upper_nibbles);
  int res=upper_nibbles | ((first << 4) | (second >>4));
  printf("after swapping nibbles %x\n",res);
-  
-  
+
  }
