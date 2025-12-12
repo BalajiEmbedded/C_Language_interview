@@ -1,3 +1,5 @@
+//Rule: Always wrap macro parameters inside parentheses.
+
 #include<stdio.h>
 
 #define square(x) ((x) * (x))  // it should be clear or else it will lead to wrong resluts
