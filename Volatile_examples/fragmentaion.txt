@@ -1,0 +1,95 @@
+memory fragmentation:-
+
+it means free memory is avalible & exist but it is broken into small pieces so we can not use it effectively
+
+simple analogy:-
+
+lets say we have a free memory in the ram as below
+
+[ ][ ][ ][ ][ ][ ][ ][ ][ ][ ]
+
+step1:- now allocate 3 blocks of memory
+
+A=3 bytes  B=2 bytes c=2 bytes
+
+we can see after allocation it look like below.
+
+[A][A][A][B][B][C][C][ ][ ][ ]
+
+
+step2:-
+
+free B & c 
+
+now memory will look like below
+
+[A][A][A][ ][ ][ ][ ][ ][ ][ ]
+
+
+step3:-
+
+Now alloctae D= 1 bytes E= 1 bytes F=1 byte 
+
+this is where fragmenation occurs
+
+see below it allocated randomly
+
+[A][A][A][D][ ][E][ ][F][ ][ ]
+
+
+step4:-
+
+Now lets ask for 3 continous bytes of memory
+
+❌ Allocation FAILS
+Even though total free memory is enough, it’s not contiguous
+
+we can see 4 bytes are avlible but not contagious.
+
+Fragmentation is not lack of memory, it is lack of continuous memory.
+
+
+Fragmentation = wasted memory
+
+Two ways memory gets wasted → inside or outside
+That’s it.
+
+1) Internal fragmenation:-
+
+lets say you asked for the memory more then you used. so un used part will be wasted
+
+lets say we ask malloc(10)
+
+it will alloctae 10 bytes right 
+
+but we used 6 , so 4 bytes of memory got wasted
+
+[ USED | USED | USED | USED | USED | USED | WASTED | WASTED | WASTED | WASTED ]
+
+
+📌 The wasted space is inside the allocated block
+
+2) ExternaL fragmenation
+
+external fragmenation means free meory exists but it is brokedn into small pieces and cannot be used for a big request.
+
+imagine it allocated at beginning:-
+
+[ A ][ A ][ B ][ B ][ C ][ C ][ FREE ][ FREE ]
+
+free B now
+
+[ A ][ A ][ FREE ][ FREE ][ C ][ C ][ FREE ][ FREE ]
+
+now free c 
+
+[ A ][ A ][ FREE ][ FREE ][ FREE ][ FREE ][ FREE ][ FREE ]
+
+now allocate small blocks
+
+[ A ][ A ][ D ][ FREE ][ E ][ FREE ][ F ][ FREE ]
+
+You still have 4 FREE blocks, but they are not together.
+
+now if we ask malloc(4) it will FAILS
+
