@@ -1,0 +1,20 @@
+What is const volatile?
+
+const volatile means:
+The program must NOT modify the variable,
+but the value can change externally (hardware / ISR).
+
+const → your code cannot write
+volatile → compiler must always read from memory
+
+const volatile is used for variables that are read-only for software but 
+whose values can change due to hardware or external events."
+
+examples:-“I used const volatile for read-only hardware status registers 
+like ADC status or UART status registers.”
+
+ADC data registers are modified by hardware but should not be written by software,
+ so they are declared const volatile.”
+
+Used const volatile when data is written by ISR but read-only in application code
+
