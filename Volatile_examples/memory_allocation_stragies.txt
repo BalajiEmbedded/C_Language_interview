@@ -1,0 +1,77 @@
+#firstfit, bestfit, worstfit are the three memory allocation stratagies
+
+They decide which free block the allocator should choose when you call malloc().
+
+Imagine Memory as Free Blocks
+
+Free memory blocks available:
+
+[ 10 ] [ 4 ] [ 20 ] [ 6 ]    ← sizes in bytes
+
+
+we requested malloc(5)
+
+1) First Fit (MOST COMMON)
+
+Pick the first free block that is big enough.
+
+What happens?
+
+10 is first block ≥ 5 → chosen
+
+Remaining free = 5
+
+now memory layout will be like this 
+
+[ 5 ] [ 4 ] [ 20 ] [ 6 ]
+
+Creates fragmentation near heap start
+
+“First fit selects the first free block that satisfies the request.”
+
+2) Best Fit
+Rule
+
+Pick the smallest free block that is big enough.
+
+What happens?
+
+Blocks ≥ 5 → 10, 20, 6
+
+Smallest = 6
+
+[ 10 ] [ 4 ] [ 20 ] [ 1 ]
+
+Pros
+
+✔ Less internal waste
+
+
+3) worst fit 
+
+Pick the largest free block.
+
+What happens?
+
+
+[ 10 ] [ 4 ] [ 15 ] [ 6 ]
+
+Pros
+
+✔ Leaves medium blocks
+
+
+
+Embedded & RTOS Context (IMPORTANT)
+
+Embedded systems usually prefer:
+
+First Fit (simple & fast)
+
+Memory pools (even better)
+
+FreeRTOS:
+
+heap_2 → first fit (fragmentation risk)
+
+heap_4 → first fit + coalescing (recommended)
