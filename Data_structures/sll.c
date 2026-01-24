@@ -14,6 +14,7 @@ void print_data(sll *ptr);
 void insert_at_begin(sll **ptr);
 void insert_at_end(sll **ptr);
 void delete_node_begin(sll **ptr);
+void delete_node_end(sll **ptr);
 
 void main()
 {
@@ -23,6 +24,12 @@ void main()
     while(1)
     {
         printf("enter the choice\n");
+        printf("1) insert node at the beginning\n");
+        printf("2) print the current data\n");
+        printf("3) insert node at the end\n");
+        printf("4) delete node at the beginning\n");
+        printf("5) delete node at the end\n");
+        printf("6) exit out of the loop\n");
         scanf("%d",&choice);
         
         switch(choice)
@@ -40,6 +47,9 @@ void main()
                     delete_node_begin(&headptr);
                     break;
             case 5:
+                    delete_node_end(&headptr);
+                    break;
+            case 6:
                     exit(0);
                     break;
             default:
@@ -108,3 +118,25 @@ void delete_node_begin(sll **ptr)
 }
 
 
+void delete_node_end(sll **ptr)
+{
+    sll *temp,*prev;
+    temp=*ptr;
+    prev=NULL;
+
+    if((*ptr)->next == NULL)
+    {
+        free(*ptr);
+        *ptr = NULL;
+    }
+
+    while(temp->next != NULL)
+    {
+        prev=temp;
+        temp=temp->next;
+    }
+
+    prev->next=NULL;
+    free(temp);
+
+}
