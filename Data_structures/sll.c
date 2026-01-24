@@ -13,6 +13,7 @@ typedef struct student
 void print_data(sll *ptr);
 void insert_at_begin(sll **ptr);
 void insert_at_end(sll **ptr);
+void delete_node_begin(sll **ptr);
 
 void main()
 {
@@ -36,6 +37,9 @@ void main()
                     insert_at_end(&headptr);
                     break;
             case 4:
+                    delete_node_begin(&headptr);
+                    break;
+            case 5:
                     exit(0);
                     break;
             default:
@@ -90,6 +94,17 @@ void insert_at_end(sll **ptr)
     }
     
     temp->next=new;
+}
+
+
+void delete_node_begin(sll **ptr)
+{
+    sll *temp;
+
+    temp=*ptr;
+    *ptr= temp->next;
+    free(temp);
+
 }
 
 
