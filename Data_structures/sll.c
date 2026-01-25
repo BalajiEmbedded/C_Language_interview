@@ -1,142 +1,173 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-typedef struct student
+typedef struct student 
 {
-    int rno;
     char name[10];
+    int roll;
     float marks;
     struct student *next;
-    
 }sll;
 
-void print_data(sll *ptr);
-void insert_at_begin(sll **ptr);
-void insert_at_end(sll **ptr);
-void delete_node_begin(sll **ptr);
-void delete_node_end(sll **ptr);
+
+void print_data(sll *);
+void insert_node_begin(sll **);
+void insert_node_end(sll **);
+void delete_node_begin(sll **);
+void delete_node_end(sll **);
+void reverse_list(sll **);
+
 
 void main()
 {
     sll *headptr=0;
+    
     int choice;
     
     while(1)
     {
-        printf("enter the choice\n");
-        printf("1) insert node at the beginning\n");
-        printf("2) print the current data\n");
-        printf("3) insert node at the end\n");
-        printf("4) delete node at the beginning\n");
-        printf("5) delete node at the end\n");
-        printf("6) exit out of the loop\n");
+        printf("enter your choice\n");
+        printf("1) print the data\n");
+        printf("2) insert the node at the beginning\n");
+        printf("3) insert the node at the end\n");
+        printf("4)delete node at beginning\n");
+        printf("5)delete node at the end\n");
+        printf("6)reverse the linked list\n");
+        printf("7) exit the current loop\n");
+        
         scanf("%d",&choice);
         
-        switch(choice)
+        switch (choice)
         {
-            case 1:
-                  insert_at_begin(&headptr);
-                  break;
-            case 2:
-                    print_data(headptr);
-                    break;
-            case 3:
-                    insert_at_end(&headptr);
-                    break;
-            case 4:
-                    delete_node_begin(&headptr);
-                    break;
-            case 5:
-                    delete_node_end(&headptr);
-                    break;
-            case 6:
-                    exit(0);
-                    break;
-            default:
-                    printf("enter valid choice\n");
-        }
+         case 1:
+                print_data(headptr);
+                break;
+         case 2:
+                insert_node_begin(&headptr);
+                break;
+         case 3:
+                insert_node_end(&headptr);
+                break;
+         case 4:
+                delete_node_begin(&headptr);
+                break;
+                
+         case 5:
+                delete_node_end(&headptr);
+                break;
+         case 6:
+                reverse_list(&headptr);
+                break;
+         case 7:
+                exit(0);
+                break;
+         default:
+                printf("enter valid data\n");
+                
     }
-    
 }
-
+}
 
 
 void print_data(sll *ptr)
 {
+    if(ptr == NULL)
+    {
+        printf("there is nothing to print\n");
+    }
     while(ptr)
     {
-    printf("%d %s %f\n",ptr->rno,ptr->name,ptr->marks);
-    ptr=ptr->next;
+        printf("----------------------------------------------\n");
+        printf("%d %s %f\n",ptr->roll,ptr->name,ptr->marks);
+        printf("----------------------------------------------\n");
+        ptr=ptr->next;
     }
-    
 }
 
 
-void insert_at_begin(sll **ptr)
+void insert_node_begin(sll **ptr)
 {
     sll *new;
     new=(sll *)malloc(sizeof(sll));
-    printf("enter the roll,name,marks\n");
-    scanf("%d %s %f",&new->rno,new->name,&new->marks);
+    printf("enter the student data name,roll,marks\n");
+    scanf("%s %d %f",new->name,&new->roll,&new->marks);
     new->next=*ptr;
     *ptr=new;
-    
 }
 
-
-void insert_at_end(sll **ptr)
+void insert_node_end(sll **ptr)
 {
     sll *new,*temp;
     new=(sll *)malloc(sizeof(sll));
-    printf("enter the roll,name,marks\n");
-    scanf("%d %s %f",&new->rno,new->name,&new->marks);
-    new->next =NULL;
+    printf("enter the student data name,roll,marks\n");
+    scanf("%s %d %f",new->name,&new->roll,&new->marks);
+    new->next=NULL;
     
-    if(*ptr==0)
+    if (*ptr == NULL)          
     {
-        *ptr=new;
+        *ptr = new;
+        return;
     }
+    
     temp = *ptr;
-    
-    while(temp->next != NULL)
+    while(temp->next !=NULL)
     {
-        temp=temp->next;
+     temp=temp->next;   
     }
-    
     temp->next=new;
 }
-
 
 void delete_node_begin(sll **ptr)
 {
     sll *temp;
-
     temp=*ptr;
-    *ptr= temp->next;
+    (*ptr)=(*ptr)->next;
     free(temp);
-
 }
-
 
 void delete_node_end(sll **ptr)
 {
-    sll *temp,*prev;
+    sll *prev,*temp;
     temp=*ptr;
     prev=NULL;
-
     if((*ptr)->next == NULL)
     {
         free(*ptr);
-        *ptr = NULL;
+        *ptr=NULL;
     }
-
+    
     while(temp->next != NULL)
     {
         prev=temp;
         temp=temp->next;
     }
-
+    
     prev->next=NULL;
     free(temp);
-
+    
 }
+
+
+void reverse_list(sll **ptr)
+{
+    sll *prev,*curr,*next;
+    prev=NULL;
+    curr=*ptr;
+    next=NULL;
+    
+    while(curr != NULL)
+    {
+        next=curr->next;
+        curr->next=prev;
+        prev=curr;
+        curr=next;
+    }
+    
+    *ptr=prev;
+    
+}
+
+
+
+
+
