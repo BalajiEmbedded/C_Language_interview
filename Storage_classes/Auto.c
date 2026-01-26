@@ -4,6 +4,7 @@
 //Initialization: Not automatically initialized (contains garbage if not assigned).
 //Optional keyword: You can write auto int x = 5;, but just int x = 5; is the same.
 //Automatic cleanup: When the function ends, the stack memory is automatically freed.
+//basically auto variables are going to store in the stack section.
 
 #include <stdio.h>
 
