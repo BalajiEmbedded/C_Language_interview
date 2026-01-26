@@ -15,6 +15,4 @@ void main()
     {
         printf("%d bit is clear\n",pos);
     }
-
-
 }

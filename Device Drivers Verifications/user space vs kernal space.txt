@@ -1,0 +1,45 @@
+user space vs kernal space
+
+User space → Applications
+Kernel space → OS core + drivers
+
+Real example
+User space crash
+Segmentation fault (core dumped)
+Only app dies.
+
+Driver crash
+Kernel panic - not syncing
+Entire system dies.
+
+How you debug driver crash
+After reboot:
+
+journalctl -k -b -1
+
+Output:
+Call Trace:
+ my_driver_write
+ vfs_write
+ 
+journalctl is used to see the system logs at one place 
+system logs (kernel, services, drivers, boot logs) in one place.
+
+journalctl -e -> jump to the end of the logs
+journalctl -f -> live monitoring of logs
+journalctl -k -> only kernal logs (device drivers, kernal panics, hardware issues)
+
+logs for specific service:-
+
+journalctl -u ssh
+journalctl -u NetworkManager
+
+journalctl -b -> logs since last boot
+
+journalctl --since "10 minutes ago"
+journalctl --since "2026-01-06 18:00:00"
+
+
+
+
+

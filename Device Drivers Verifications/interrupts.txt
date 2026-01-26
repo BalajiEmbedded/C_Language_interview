@@ -1,0 +1,27 @@
+what is an interrupt:-
+
+interrupt is an signal raised to the cpu which needs attention
+
+why interrupt
+
+avoid continous polling
+saves cpu time
+faster response
+
+Hardware event
+   ↓
+Interrupt
+   ↓
+Driver ISR
+   ↓
+Data handled
+
+cat /proc/interrupt | grep eth0
+
+45:  128934  IR-IO-APIC  eth0
+
+irq count will keep on incremeting in case of each packet recived over the eth0 
+
+if not it is a driver issue
+
+

@@ -1,0 +1,56 @@
+Q2. Where do device drivers run?
+
+device drivers run in the kernal
+
+Application
+   ↓
+Operating System
+   ↓
+Device Driver
+   ↓
+Hardware
+
+
+sudo modprobe i2c_dev
+dmesg | tail
+
+Output:
+
+i2c /dev entries driver
+
+Real failure example
+dmesg
+BUG: unable to handle kernel NULL pointer dereference
+IP: i2c_transfer+0x34/0x90
+
+Meaning:
+
+Driver accessed invalid memory
+
+Kernel crashed
+
+System may reboot
+
+
+modprobe:-
+
+modprobe loads or removes kernel modules (drivers).
+Load this driver into the kernel (with dependencies).
+
+Load a module
+sudo modprobe i2c_dev
+✔ Loads the module
+✔ Automatically loads dependencies
+
+
+Remove a module
+sudo modprobe -r i2c_dev
+
+✔ Safely removes the module
+✔ Checks dependencies before removing
+
+
+Why modprobe is better than insmod
+Command	What it does
+insmod	Loads a module without dependencies
+modprobe	Loads module with dependencies
