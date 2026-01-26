@@ -1,0 +1,4 @@
+polling vs interrupt 
+
+polling -> cpu keep on checking for occurance
+interrupts-> when ever occurance happen it it will let you know the cpu

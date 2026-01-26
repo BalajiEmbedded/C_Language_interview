@@ -1,0 +1,52 @@
+What is Device driver:-
+
+Device driver is a piece of code that act as a bridge between the os & hardware 
+os talks software language, drivers converts the software language into hardware specific actions
+
+Why device drivers are needed ?
+
+OS cannot directly control hardware
+Every hardware device works differently
+Driver hides hardware complexity
+Provides a standard interface to OS
+
+lsmod | grep usb
+
+-> usbcore   299008  6 xhci_hcd,usb_storage
+
+This means:
+
+USB driver is loaded
+
+OS can talk to USB devices
+
+
+dmesg | tail 
+usb 1-1: device descriptor read/64, error -110
+
+Meaning:
+
+Driver tried to talk to USB device
+
+Hardware didn’t respond (timeout)
+
+
+lsmod -> it lists all the currently loaded kernal modules
+
+lsmod
+
+Module          Size    Used by
+i2c_dev         20480   0
+snd_hda_intel   57344   3
+usbcore         286720  5
+
+
+When you use lsmod
+
+Check if a driver is already loaded
+
+Debug device not working
+
+Verify after inserting/removing a module
+
+

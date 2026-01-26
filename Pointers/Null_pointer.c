@@ -11,5 +11,5 @@ void main()
     int *ptr;
     ptr=NULL;
     printf("%p",ptr);
-    //printf("%d",*ptr); //Dereferencing a NULL pointer is undefined behavior → program crashes.
+    printf("%d",*ptr); //Dereferencing a NULL pointer is undefined behavior → program crashes.
 }
