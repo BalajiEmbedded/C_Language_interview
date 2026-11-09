@@ -12,6 +12,7 @@ int main() {
     double d;
     int arr[10];
     struct Point p;
+    char ch;
 
     printf("Size of int: %ld bytes\n", my_sizeof(i));
     printf("Size of double: %ld bytes\n", my_sizeof(d));
