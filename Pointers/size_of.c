@@ -1,24 +1,27 @@
-#include<stdio.h>
+#include <stdio.h>
+#include <stddef.h>
 
-int size_of(void *obj)
+int size_of(void *obj, size_t bytes)
 {
+    char *start = (char *)obj;
+    char *end = start + bytes;
 
-    return ((char*)(obj +1)) - (char*)(obj);
-
+    return (int)(end - start);
 }
 
-void main()
+int main(void)
 {
     int a;
     char ch;
     float f;
     long l;
     double d;
-    printf("%d\n",size_of(&a));
-    printf("%d\n",size_of(&ch));
-    printf("%d\n",size_of(&f));
-    printf("%d\n",size_of(&l));
-    printf("%d\n",size_of(&d));
 
+    printf("int    : %zu bytes\n", size_of(&a, 4));
+    printf("char   : %zu bytes\n", size_of(&ch, 1));
+    printf("float  : %zu bytes\n", size_of(&f, 4));
+    printf("long   : %zu bytes\n", size_of(&l, 8));
+    printf("double : %zu bytes\n", size_of(&d, 8));
 
+    return 0;
 }
